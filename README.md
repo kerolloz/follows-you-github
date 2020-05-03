@@ -18,7 +18,7 @@ _Follows You_ shows a label on a GitHub follower profile 👨🏻‍💻
 ## Simple just like that
 
 <div align="center">
-  <img src="./images/arya.png" alt="screenshot 1">
+  <img src="./images/arya.png" alt="screenshot 1" />
   <br>
-  <img src="./images/arya2.png" alt="screenshot 2>
+  <img src="./images/arya2.png" alt="screenshot 2" />
 </div>
