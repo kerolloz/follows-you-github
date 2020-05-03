@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "follows-you-github",
+  "version": "0.1.0",
+  "description": "Adds a \"follows you\" label on a GitHub user profile that follows the logged in user.",
+
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+
+  "permissions": ["https://api.github.com/*"],
+
+  "content_scripts": [
+    {
+      "matches": ["*://github.com/*"],
+      "js": ["follows-you.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
