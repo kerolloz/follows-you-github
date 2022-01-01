@@ -26,7 +26,7 @@ The extension is not available on Chrome extensions yet. It will be available so
 ## Screenshot
 
 <div align="center">
-  <img src="./images/arya.png" alt="screenshot 1" />
+  <img src="https://user-images.githubusercontent.com/36763164/147855875-b3ddc60d-0caf-4784-8dcc-8f6af75bbd58.png" alt="screenshot 1">
   <br>
-  <img src="./images/arya2.png" alt="screenshot 2" />
+  <img src="https://user-images.githubusercontent.com/36763164/147855884-2594df5c-c14e-408e-af59-49f137706bbe.png" alt="screenshot 2">
 </div>
