@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "follows-you-github",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Adds a \"follows you\" label on a GitHub user profile that follows the logged in user.",
 
   "icons": {
