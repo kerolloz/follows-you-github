@@ -6,19 +6,15 @@ const $ = document.querySelector.bind(document);
  * @param {string} y
  */
 async function isFollowing(x, y) {
-  const response = await fetch(
-    `https://api.github.com/users/${x}/following/${y}`,
-    { method: "GET" }
-  );
+  const url = `https://api.github.com/users/${x}/following/${y}`;
+  const response = await fetch(url);
+  if (response.status === 403) {
+    console.error(await response.json());
+  }
   return response.status === 204; // according to github docs 204 means follows
 }
 
 class FollowsYou {
-  constructor() {
-    this.element = this.createElement();
-    this.stickyElement = this.createElement("m-1"); // give it some margin
-  }
-
   /**
    * creates and returns a `follows you` element
    * @param {...string} classes
@@ -28,49 +24,43 @@ class FollowsYou {
     const el = document.createElement("span");
     el.innerText = "follows you";
     el.style.fontSize = "10px";
-    el.classList.add(
-      ...classes,
-      "label",
-      "text-uppercase",
-      "bg-gray-dark",
-      "v-align-middle"
-    );
+    el.classList.add(...classes, "label", "text-uppercase", "v-align-middle");
     return el;
   }
 
   /**
-   * show the created elements on the page
+   * show the created elements on the profile page
    */
-  showElements() {
-    const stickyBarUsername = $("span.d-table-cell:nth-child(2) > strong");
+  showOnProfilePage() {
+    const stickyBarUsername = $(
+      ".js-user-profile-sticky-bar > div:nth-child(1) > span:nth-child(2) > strong:nth-child(1)"
+    );
 
     stickyBarUsername.parentNode.insertBefore(
-      this.stickyElement,
+      this.createElement("ml-1"), // give it some margin
       stickyBarUsername.nextSibling
     );
-    $("h1.vcard-names").appendChild(this.element);
+    $("h1.vcard-names").appendChild(this.createElement());
   }
 }
 
 let shouldShowFollowsYou = false;
 
 (async () => {
+  const f = new FollowsYou();
   const isProfilePage = !!$(".vcard-fullname");
-  const loggedInUsername = $("meta[name='user-login']").content;
-  const openedProfileUsername = $("meta[property='profile:username']").content;
+  const loggedInUsername = $("meta[name='user-login']")?.content;
+  const openedProfileUsername = $("meta[property='profile:username']")?.content;
 
   // if I'm logged in and viewing some user's profile page who follows me
-  shouldShowFollowsYou =
+  shouldShowOnProfile =
     isProfilePage &&
     loggedInUsername !== openedProfileUsername && // not my profile
     (await isFollowing(openedProfileUsername, loggedInUsername));
 
-  if (shouldShowFollowsYou) {
-    const f = new FollowsYou();
-    const showFollowsYou = f.showElements.bind(f);
+  if (shouldShowOnProfile) {
     const PROFILE_TAB_SWITCH = "pjax:end";
-
-    showFollowsYou();
-    document.addEventListener(PROFILE_TAB_SWITCH, showFollowsYou);
+    document.addEventListener(PROFILE_TAB_SWITCH, f.showOnProfilePage.bind(f));
+    document.dispatchEvent(new Event(PROFILE_TAB_SWITCH));
   }
 })();
