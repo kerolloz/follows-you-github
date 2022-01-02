@@ -31,5 +31,7 @@ The extension is not available on Chrome extensions yet. It will be available so
 <img src="https://user-images.githubusercontent.com/36763164/147870392-4d25f225-435d-41df-a077-80c399164b7a.png" alt="image" style="width: 40%;">
 <img src="https://user-images.githubusercontent.com/36763164/147855884-2594df5c-c14e-408e-af59-49f137706bbe.png" alt="image" style="width: 40%;">
 <img src="https://user-images.githubusercontent.com/36763164/147870318-22c25f26-4bd4-4686-8303-9eb144300fdf.png" alt="image" style="width: 40%;">
+<img src="https://user-images.githubusercontent.com/36763164/147882537-35a03544-6376-49d7-bce5-4b0abdcf921a.png" alt="image" style="width: 40%;">
+<img src="https://user-images.githubusercontent.com/36763164/147882450-0c347ec3-263c-447e-90c6-152156110a3e.png" alt="image" style="width: 40%;">
 
 </div>
