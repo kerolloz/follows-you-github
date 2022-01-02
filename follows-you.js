@@ -1,16 +1,18 @@
 const $ = document.querySelector.bind(document);
 
 /**
- * returns whether user X follows user Y
+ * returns whether user X is following user Y
  * @param {string} x
  * @param {string} y
  */
 async function isFollowing(x, y) {
-  const url = `https://api.github.com/users/${x}/following/${y}`;
-  const response = await fetch(url);
-  if (response.status === 403) {
-    console.error(await response.json());
-  }
+  const cachekey = new Date().toISOString().split(":")[0];
+  // toISOString() '2022-01-02T13:36:43.370Z' => split(":")[0] '2022-01-02T13' Caching by Date & Hour
+  // cache is considered valid for an hour
+  // https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting
+  // X-RateLimit-Limit: 60  => The maximum number of requests you're permitted to make per hour.
+  const url = `https://api.github.com/users/${x}/following/${y}?${cachekey}`;
+  const response = await fetch(url, { cache: "force-cache" });
   return response.status === 204; // according to github docs 204 means follows
 }
 
