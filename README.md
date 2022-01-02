@@ -17,7 +17,10 @@ _Follows You_ shows a label on a GitHub follower profile 👨🏻‍💻
 
 ## Chrome
 
-The extension is not available on Chrome extensions yet. It will be available soon. For now you can try it easily by  downloading the `follows-you.crx` file from the [releases page](https://github.com/kerolloz/follows-you-github/releases/latest), go to [chrome://extensions/](chrome://extensions/), drag and drop the downloaded file into the extensions opened tab. That's it.
+The extension is not available on Chrome extensions yet. It will be available soon. However, you can still use it.
+- Download the `follows-you.crx` file from the [releases page](https://github.com/kerolloz/follows-you-github/releases/latest).
+- Go to <chrome://extensions/>.
+- Drag and drop the downloaded file into the <chrome://extensions> tab.
 
 <div align="center">
   <img alt="Chrome how to install" src="https://user-images.githubusercontent.com/36763164/147870708-13964f6b-9790-481b-97a7-634c568b28d7.gif" />
