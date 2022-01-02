@@ -1,4 +1,5 @@
 const $ = document.querySelector.bind(document);
+const HOVER_CARD_SELECTOR = ".Popover.js-hovercard-content.position-absolute";
 
 /**
  * returns whether user X is following user Y
@@ -16,13 +17,16 @@ async function isFollowing(x, y) {
   return response.status === 204; // according to github docs 204 means follows
 }
 
-class FollowsYou {
+/**
+ * Follows You
+ */
+class FY {
   /**
    * creates and returns a `follows you` element
    * @param {...string} classes
    * @returns {HTMLSpanElement} follows you element
    */
-  createElement(...classes) {
+  static createElement(...classes) {
     const el = document.createElement("span");
     el.innerText = "follows you";
     el.style.fontSize = "10px";
@@ -31,38 +35,59 @@ class FollowsYou {
   }
 
   /**
-   * show the created elements on the profile page
+   * shows `follows-you` label on the profile page
    */
-  showOnProfilePage() {
+  static showOnProfilePage() {
     const stickyBarUsername = $(
       ".js-user-profile-sticky-bar > div:nth-child(1) > span:nth-child(2) > strong:nth-child(1)"
     );
 
     stickyBarUsername.parentNode.insertBefore(
-      this.createElement("ml-1"), // give it some margin
+      FY.createElement("ml-1"), // give it some margin
       stickyBarUsername.nextSibling
     );
-    $("h1.vcard-names").appendChild(this.createElement());
+    $("h1.vcard-names").appendChild(FY.createElement());
+  }
+
+  /**
+   * shows `follows-you` label on the user hover card
+   */
+  static showOnHoverCard() {
+    $(`${HOVER_CARD_SELECTOR} .d-flex.mt-3`).after(
+      FY.createElement("d-flex", "flex-justify-center", "mt-2")
+    );
   }
 }
 
-let shouldShowFollowsYou = false;
-
 (async () => {
-  const f = new FollowsYou();
-  const isProfilePage = !!$(".vcard-fullname");
+  const followsMe = (x) => isFollowing(x, loggedInUsername);
   const loggedInUsername = $("meta[name='user-login']")?.content;
-  const openedProfileUsername = $("meta[property='profile:username']")?.content;
 
+  // PART 1 --------------------------------------------------
   // if I'm logged in and viewing some user's profile page who follows me
-  shouldShowOnProfile =
+  const isProfilePage = !!$(".vcard-fullname");
+  const openedProfileUsername = $("meta[property='profile:username']")?.content;
+  const shouldShowOnProfile =
     isProfilePage &&
     loggedInUsername !== openedProfileUsername && // not my profile
-    (await isFollowing(openedProfileUsername, loggedInUsername));
+    (await followsMe(openedProfileUsername));
 
   if (shouldShowOnProfile) {
     const PROFILE_TAB_SWITCH = "pjax:end";
-    document.addEventListener(PROFILE_TAB_SWITCH, f.showOnProfilePage.bind(f));
+    document.addEventListener(PROFILE_TAB_SWITCH, FY.showOnProfilePage);
     document.dispatchEvent(new Event(PROFILE_TAB_SWITCH));
   }
+
+  // PART 2 --------------------------------------------------
+  // show on hover card
+  const callback = async () => {
+    const userimage = $(`${HOVER_CARD_SELECTOR} div > a > img`);
+    if (!userimage) return;
+    const username = userimage.getAttribute("alt").substring(1); // @username => username
+    if (await followsMe(username)) {
+      FY.showOnHoverCard();
+    }
+  };
+  const hovercard = $(HOVER_CARD_SELECTOR);
+  new MutationObserver(callback).observe(hovercard, { attributes: true });
 })();
