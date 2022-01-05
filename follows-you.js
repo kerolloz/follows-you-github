@@ -42,7 +42,7 @@ class FY {
       ".js-user-profile-sticky-bar > div:nth-child(1) > span:nth-child(2) > strong:nth-child(1)"
     );
 
-    stickyBarUsername.parentNode.insertBefore(
+    stickyBarUsername?.parentNode.insertBefore(
       FY.createElement("ml-1"), // give it some margin
       stickyBarUsername.nextSibling
     );
@@ -66,7 +66,7 @@ class FY {
   // PART 1 --------------------------------------------------
   // if I'm logged in and viewing some user's profile page who follows me
   const isProfilePage = !!$(".vcard-fullname");
-  const openedProfileUsername = $("meta[property='profile:username']")?.content;
+  const openedProfileUsername = $(".vcard-username")?.innerText;
   const shouldShowOnProfile =
     isProfilePage &&
     loggedInUsername !== openedProfileUsername && // not my profile

@@ -15,7 +15,7 @@
 
   "content_scripts": [
     {
-      "matches": ["https://github.com/*"],
+      "matches": ["https://github.com/*", "https://gist.github.com/*"],
       "js": ["follows-you.js"]
     }
   ]
