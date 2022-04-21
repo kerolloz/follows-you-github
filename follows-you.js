@@ -53,7 +53,7 @@ class FY {
    * shows `follows-you` label on the user hover card
    */
   static showOnHoverCard() {
-    $(`${HOVER_CARD_SELECTOR} .d-flex.mt-3`).after(
+    $(`${HOVER_CARD_SELECTOR} .px-3`).append(
       FY.createElement("d-flex", "flex-justify-center", "mt-2")
     );
   }
@@ -81,7 +81,7 @@ class FY {
   // PART 2 --------------------------------------------------
   // show on hover card
   const callback = async () => {
-    const userimage = $(`${HOVER_CARD_SELECTOR} div > a > img`);
+    const userimage = $(`${HOVER_CARD_SELECTOR} .avatar-user`);
     if (!userimage) return;
     const username = userimage.getAttribute("alt").substring(1); // @username => username
     if (await followsMe(username)) {
