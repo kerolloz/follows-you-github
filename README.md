@@ -1,5 +1,6 @@
-# <img src="icons/128.png" width="45" align="left"> Follows You GitHub 
+# <img src="icons/128.png" width="45" align="left"> Follows You GitHub <a target="_blank" href="https://kounter.tk"><img align="right" src="https://t.ly/_B26" /></a>
 > A simple browser extension that shows a label on a follower profile or hovercard. 👨‍💻
+
 
 ## Install
 
