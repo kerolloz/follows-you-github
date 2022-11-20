@@ -53,9 +53,15 @@ class FY {
    * shows `follows-you` label on the user hover card
    */
   static showOnHoverCard() {
-    $(`${HOVER_CARD_SELECTOR} .px-3`).append(
-      FY.createElement("d-flex", "flex-justify-center", "mt-2")
+    const hovercardLabel = FY.createElement(
+      "mt-2",
+      "d-flex",
+      "flex-justify-center"
     );
+    hovercardLabel.id = "hovercard-follows-you";
+
+    if ($(`#${hovercardLabel.id}`)) return; // already added
+    $(`${HOVER_CARD_SELECTOR} .px-3`)?.append(hovercardLabel);
   }
 }
 
