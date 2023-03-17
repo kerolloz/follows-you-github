@@ -39,13 +39,9 @@ class FY {
    */
   static showOnProfilePage() {
     const stickyBarUsername = $(
-      ".js-user-profile-sticky-bar > div:nth-child(1) > span:nth-child(2) > strong:nth-child(1)"
+      "span.d-table-cell.v-align-middle.lh-condensed.pr-2 > div"
     );
-
-    stickyBarUsername?.parentNode.insertBefore(
-      FY.createElement("ml-1"), // give it some margin
-      stickyBarUsername.nextSibling
-    );
+    stickyBarUsername?.after(FY.createElement());
     $("h1.vcard-names").appendChild(FY.createElement());
   }
 
