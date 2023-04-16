@@ -68,7 +68,7 @@ class FY {
   // PART 1 --------------------------------------------------
   // if I'm logged in and viewing some user's profile page who follows me
   const isProfilePage = !!$(".vcard-fullname");
-  const openedProfileUsername = $(".vcard-username")?.innerText;
+  const openedProfileUsername = $("command-palette-token")?.dataset.text;
   const shouldShowOnProfile =
     isProfilePage &&
     loggedInUsername !== openedProfileUsername && // not my profile
