@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Follows You GitHub",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Adds a \"follows you\" label on a GitHub follower profile or hovercard",
   "icons": {
     "16": "icons/16.png",
