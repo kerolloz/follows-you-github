@@ -1,6 +1,6 @@
 # <img src="icons/128.png" width="45" align="left"> Follows You GitHub <a target="_blank" href="https://kounter.kerolloz.dev"><img align="right" src="https://kounter.kerolloz.dev/badge/kerolloz.follows-you-github?style=flat-square&color=333&label=Repo%20Visits&labelColor=456" /></a>
-> A simple browser extension that shows a label on a follower profile or hovercard. 👨‍💻
 
+> A simple browser extension that shows a **"Follows you"** label on a GitHub profile or hovercard. 👨‍💻
 
 ## Install
 
